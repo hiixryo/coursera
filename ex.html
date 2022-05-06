@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 800;
+            height: 800;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "ad", "label": "ad", "shape": "dot", "size": 10}, {"id": "nike", "label": "nike", "shape": "dot", "size": 10}, {"id": "air", "label": "air", "shape": "dot", "size": 10}, {"id": "available", "label": "available", "shape": "dot", "size": 10}, {"id": "via", "label": "via", "shape": "dot", "size": 10}, {"id": "sneakerscouts", "label": "sneakerscouts", "shape": "dot", "size": 10}, {"id": "\u2026", "label": "\u2026", "shape": "dot", "size": 10}, {"id": "kingjames", "label": "kingjames", "shape": "dot", "size": 10}, {"id": "u", "label": "u", "shape": "dot", "size": 10}, {"id": "\u2019", "label": "\u2019", "shape": "dot", "size": 10}, {"id": "china", "label": "china", "shape": "dot", "size": 10}, {"id": "adidas", "label": "adidas", "shape": "dot", "size": 10}, {"id": "\ufe0f", "label": "\ufe0f", "shape": "dot", "size": 10}, {"id": "win", "label": "win", "shape": "dot", "size": 10}, {"id": "day", "label": "day", "shape": "dot", "size": 10}, {"id": "jumpman23", "label": "jumpman23", "shape": "dot", "size": 10}, {"id": "xbox", "label": "xbox", "shape": "dot", "size": 10}, {"id": "nikestore", "label": "nikestore", "shape": "dot", "size": 10}, {"id": "eneskanter", "label": "eneskanter", "shape": "dot", "size": 10}, {"id": "together", "label": "together", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "ad", "label": 1, "to": "nike", "weight": 1}, {"from": "ad", "label": 1, "to": "air", "weight": 1}, {"from": "ad", "label": 1, "to": "available", "weight": 1}, {"from": "ad", "label": 1, "to": "via", "weight": 1}, {"from": "ad", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "ad", "label": 1, "to": "\u2026", "weight": 1}, {"from": "ad", "label": 1, "to": "kingjames", "weight": 1}, {"from": "ad", "label": 1, "to": "u", "weight": 1}, {"from": "ad", "label": 1, "to": "\u2019", "weight": 1}, {"from": "ad", "label": 1, "to": "china", "weight": 1}, {"from": "ad", "label": 1, "to": "adidas", "weight": 1}, {"from": "ad", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "ad", "label": 1, "to": "win", "weight": 1}, {"from": "ad", "label": 1, "to": "ad", "weight": 1}, {"from": "ad", "label": 1, "to": "day", "weight": 1}, {"from": "ad", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "ad", "label": 1, "to": "xbox", "weight": 1}, {"from": "ad", "label": 1, "to": "nikestore", "weight": 1}, {"from": "ad", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "ad", "label": 1, "to": "together", "weight": 1}, {"from": "nike", "label": 1, "to": "air", "weight": 1}, {"from": "nike", "label": 1, "to": "available", "weight": 1}, {"from": "nike", "label": 1, "to": "via", "weight": 1}, {"from": "nike", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "nike", "label": 1, "to": "nike", "weight": 1}, {"from": "nike", "label": 1, "to": "\u2026", "weight": 1}, {"from": "nike", "label": 1, "to": "adidas", "weight": 1}, {"from": "nike", "label": 1, "to": "\u2019", "weight": 1}, {"from": "nike", "label": 1, "to": "nikestore", "weight": 1}, {"from": "nike", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "nike", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "nike", "label": 1, "to": "win", "weight": 1}, {"from": "nike", "label": 1, "to": "u", "weight": 1}, {"from": "nike", "label": 1, "to": "kingjames", "weight": 1}, {"from": "nike", "label": 1, "to": "day", "weight": 1}, {"from": "nike", "label": 1, "to": "together", "weight": 1}, {"from": "nike", "label": 1, "to": "china", "weight": 1}, {"from": "nike", "label": 1, "to": "xbox", "weight": 1}, {"from": "nike", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "air", "label": 1, "to": "available", "weight": 1}, {"from": "air", "label": 1, "to": "via", "weight": 1}, {"from": "air", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "air", "label": 1, "to": "\u2019", "weight": 1}, {"from": "air", "label": 1, "to": "\u2026", "weight": 1}, {"from": "air", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "air", "label": 1, "to": "day", "weight": 1}, {"from": "air", "label": 1, "to": "air", "weight": 1}, {"from": "air", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "air", "label": 1, "to": "u", "weight": 1}, {"from": "air", "label": 1, "to": "nikestore", "weight": 1}, {"from": "air", "label": 1, "to": "win", "weight": 1}, {"from": "air", "label": 1, "to": "together", "weight": 1}, {"from": "air", "label": 1, "to": "adidas", "weight": 1}, {"from": "air", "label": 1, "to": "china", "weight": 1}, {"from": "air", "label": 1, "to": "xbox", "weight": 1}, {"from": "air", "label": 1, "to": "kingjames", "weight": 1}, {"from": "air", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "available", "label": 1, "to": "via", "weight": 1}, {"from": "available", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "available", "label": 1, "to": "adidas", "weight": 1}, {"from": "available", "label": 1, "to": "\u2026", "weight": 1}, {"from": "available", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "available", "label": 1, "to": "kingjames", "weight": 1}, {"from": "available", "label": 1, "to": "\u2019", "weight": 1}, {"from": "available", "label": 1, "to": "day", "weight": 1}, {"from": "available", "label": 1, "to": "u", "weight": 1}, {"from": "available", "label": 1, "to": "nikestore", "weight": 1}, {"from": "available", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "available", "label": 1, "to": "xbox", "weight": 1}, {"from": "available", "label": 1, "to": "available", "weight": 1}, {"from": "available", "label": 1, "to": "win", "weight": 1}, {"from": "available", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "via", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "via", "label": 1, "to": "\u2026", "weight": 1}, {"from": "via", "label": 1, "to": "kingjames", "weight": 1}, {"from": "via", "label": 1, "to": "\u2019", "weight": 1}, {"from": "via", "label": 1, "to": "u", "weight": 1}, {"from": "via", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "via", "label": 1, "to": "nikestore", "weight": 1}, {"from": "via", "label": 1, "to": "adidas", "weight": 1}, {"from": "via", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "via", "label": 1, "to": "day", "weight": 1}, {"from": "via", "label": 1, "to": "win", "weight": 1}, {"from": "via", "label": 1, "to": "xbox", "weight": 1}, {"from": "via", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "via", "label": 1, "to": "via", "weight": 1}, {"from": "via", "label": 1, "to": "china", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "sneakerscouts", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "\u2026", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "kingjames", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "\u2019", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "win", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "day", "weight": 1}, {"from": "sneakerscouts", "label": 1, "to": "u", "weight": 1}, {"from": "adidas", "label": 1, "to": "\u2019", "weight": 1}, {"from": "adidas", "label": 1, "to": "\u2026", "weight": 1}, {"from": "adidas", "label": 1, "to": "adidas", "weight": 1}, {"from": "adidas", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "adidas", "label": 1, "to": "day", "weight": 1}, {"from": "adidas", "label": 1, "to": "u", "weight": 1}, {"from": "adidas", "label": 1, "to": "win", "weight": 1}, {"from": "adidas", "label": 1, "to": "china", "weight": 1}, {"from": "adidas", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "adidas", "label": 1, "to": "together", "weight": 1}, {"from": "adidas", "label": 1, "to": "nikestore", "weight": 1}, {"from": "adidas", "label": 1, "to": "xbox", "weight": 1}, {"from": "adidas", "label": 1, "to": "kingjames", "weight": 1}, {"from": "adidas", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "\u2026", "label": 1, "to": "\u2019", "weight": 1}, {"from": "\u2026", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "\u2026", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "\u2026", "label": 1, "to": "win", "weight": 1}, {"from": "\u2026", "label": 1, "to": "u", "weight": 1}, {"from": "\u2026", "label": 1, "to": "nikestore", "weight": 1}, {"from": "\u2026", "label": 1, "to": "day", "weight": 1}, {"from": "\u2026", "label": 1, "to": "kingjames", "weight": 1}, {"from": "\u2026", "label": 1, "to": "\u2026", "weight": 1}, {"from": "\u2026", "label": 1, "to": "china", "weight": 1}, {"from": "\u2026", "label": 1, "to": "together", "weight": 1}, {"from": "\u2026", "label": 1, "to": "xbox", "weight": 1}, {"from": "\u2026", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "\u2019", "label": 1, "to": "win", "weight": 1}, {"from": "\u2019", "label": 1, "to": "u", "weight": 1}, {"from": "\u2019", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "\u2019", "label": 1, "to": "\u2019", "weight": 1}, {"from": "\u2019", "label": 1, "to": "nikestore", "weight": 1}, {"from": "\u2019", "label": 1, "to": "together", "weight": 1}, {"from": "\u2019", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "\u2019", "label": 1, "to": "day", "weight": 1}, {"from": "\u2019", "label": 1, "to": "xbox", "weight": 1}, {"from": "\u2019", "label": 1, "to": "china", "weight": 1}, {"from": "\u2019", "label": 1, "to": "kingjames", "weight": 1}, {"from": "\u2019", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "nikestore", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "nikestore", "label": 1, "to": "u", "weight": 1}, {"from": "nikestore", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "nikestore", "label": 1, "to": "day", "weight": 1}, {"from": "nikestore", "label": 1, "to": "kingjames", "weight": 1}, {"from": "nikestore", "label": 1, "to": "nikestore", "weight": 1}, {"from": "nikestore", "label": 1, "to": "win", "weight": 1}, {"from": "nikestore", "label": 1, "to": "together", "weight": 1}, {"from": "nikestore", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "nikestore", "label": 1, "to": "china", "weight": 1}, {"from": "nikestore", "label": 1, "to": "xbox", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "\ufe0f", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "win", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "u", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "day", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "china", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "kingjames", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "xbox", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "together", "weight": 1}, {"from": "\ufe0f", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "day", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "kingjames", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "u", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "win", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "china", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "together", "weight": 1}, {"from": "jumpman23", "label": 1, "to": "jumpman23", "weight": 1}, {"from": "win", "label": 1, "to": "u", "weight": 1}, {"from": "win", "label": 1, "to": "win", "weight": 1}, {"from": "win", "label": 1, "to": "xbox", "weight": 1}, {"from": "win", "label": 1, "to": "day", "weight": 1}, {"from": "win", "label": 1, "to": "china", "weight": 1}, {"from": "win", "label": 1, "to": "kingjames", "weight": 1}, {"from": "win", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "win", "label": 1, "to": "together", "weight": 1}, {"from": "u", "label": 1, "to": "u", "weight": 1}, {"from": "u", "label": 1, "to": "kingjames", "weight": 1}, {"from": "u", "label": 1, "to": "xbox", "weight": 1}, {"from": "u", "label": 1, "to": "day", "weight": 1}, {"from": "u", "label": 1, "to": "china", "weight": 1}, {"from": "u", "label": 1, "to": "together", "weight": 1}, {"from": "u", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "kingjames", "label": 1, "to": "china", "weight": 1}, {"from": "kingjames", "label": 1, "to": "kingjames", "weight": 1}, {"from": "kingjames", "label": 1, "to": "day", "weight": 1}, {"from": "kingjames", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "kingjames", "label": 1, "to": "together", "weight": 1}, {"from": "day", "label": 1, "to": "day", "weight": 1}, {"from": "day", "label": 1, "to": "xbox", "weight": 1}, {"from": "day", "label": 1, "to": "china", "weight": 1}, {"from": "day", "label": 1, "to": "together", "weight": 1}, {"from": "day", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "together", "label": 1, "to": "xbox", "weight": 1}, {"from": "together", "label": 1, "to": "together", "weight": 1}, {"from": "together", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "together", "label": 1, "to": "china", "weight": 1}, {"from": "china", "label": 1, "to": "china", "weight": 1}, {"from": "china", "label": 1, "to": "eneskanter", "weight": 1}, {"from": "xbox", "label": 1, "to": "xbox", "weight": 1}, {"from": "eneskanter", "label": 1, "to": "eneskanter", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
